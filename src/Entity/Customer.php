@@ -6,11 +6,12 @@ use App\Repository\CustomerRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=CustomerRepository::class)
  */
-class Customer
+class Customer implements UserInterface
 {
     /**
      * @ORM\Id
@@ -32,7 +33,7 @@ class Customer
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $Ãpassword;
+    private $password;
 
     /**
      * @ORM\OneToMany(targetEntity=CustomerUser::class, mappedBy="customer", orphanRemoval=true)
@@ -73,14 +74,14 @@ class Customer
         return $this;
     }
 
-    public function getÃpassword(): ?string
+    public function getPassword(): ?string
     {
-        return $this->Ãpassword;
+        return $this->password;
     }
 
-    public function setÃpassword(string $Ãpassword): self
+    public function setPassword(string $password): self
     {
-        $this->Ãpassword = $Ãpassword;
+        $this->password = $password;
 
         return $this;
     }
@@ -113,5 +114,36 @@ class Customer
         }
 
         return $this;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function getRoles(): array
+    {
+        return array();
+    }
+
+    /**
+     * Returning a salt is only needed, if you are not using a modern
+     * hashing algorithm (e.g. bcrypt or sodium) in your security.yaml.
+     *
+     * @see UserInterface
+     */
+    public function getSalt(): ?string
+    {
+        return null;
+    }
+
+    public function getUsername(): string
+    {
+        return $this->email;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials()
+    {
     }
 }
