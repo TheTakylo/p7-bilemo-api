@@ -25,11 +25,6 @@ class Product
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $model;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
     private $brand;
 
     /**
@@ -60,18 +55,6 @@ class Product
     public function setName(string $name): self
     {
         $this->name = $name;
-
-        return $this;
-    }
-
-    public function getModel(): ?string
-    {
-        return $this->model;
-    }
-
-    public function setModel(string $model): self
-    {
-        $this->model = $model;
 
         return $this;
     }
