@@ -2,15 +2,23 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\CustomerUserRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
+ * @ApiResource(
+ *     attributes={"security"="is_granted('ROLE_USER')"},
+ *     normalizationContext={"groups"={"read"}},
+ *     denormalizationContext={"groups"={"write"}}
+ * )
  * @ORM\Entity(repositoryClass=CustomerUserRepository::class)
  */
 class CustomerUser
 {
     /**
+     * @Groups({"read"})
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
@@ -18,21 +26,25 @@ class CustomerUser
     private $id;
 
     /**
+     * @Groups({"read"})
      * @ORM\Column(type="string", length=255)
      */
     private $email;
 
     /**
+     * @Groups({"read"})
      * @ORM\Column(type="string", length=255)
      */
     private $password;
 
     /**
+     * @Groups({"read"})
      * @ORM\Column(type="string", length=255)
      */
     private $firstname;
 
     /**
+     * @Groups({"read"})
      * @ORM\Column(type="string", length=255)
      */
     private $lastname;
