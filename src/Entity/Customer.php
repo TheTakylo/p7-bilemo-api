@@ -121,7 +121,7 @@ class Customer implements UserInterface
      */
     public function getRoles(): array
     {
-        return array();
+        return array('ROLE_USER');
     }
 
     /**
