@@ -26,25 +26,25 @@ class CustomerUser
     private $id;
 
     /**
-     * @Groups({"read"})
+     * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255)
      */
     private $email;
 
     /**
-     * @Groups({"read"})
+     * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255)
      */
     private $password;
 
     /**
-     * @Groups({"read"})
+     * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255)
      */
     private $firstname;
 
     /**
-     * @Groups({"read"})
+     * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255)
      */
     private $lastname;
